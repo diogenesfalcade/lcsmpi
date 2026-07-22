@@ -9,11 +9,11 @@ This repository contains a high-performance C implementation of the Longest Comm
 ## Benchmarking & Environment Setup
 To ensure statistically significant and reliable performance metrics, the benchmarking environment was strictly controlled to prevent dynamic hardware scaling:
 *   **CPU Governor:** Forced continuous maximum frequency (`sudo cpufreq-set -g performance`).
-*   **Turbo Boost:** Disabled to eliminate automatic clock variations[cite: 2].
-*   **Process Isolation:** Managed CPU allocation via `cgroups` and deprioritized background processes using `renice`[cite: 2].
-*   **OpenMP Tuning:** Bound threads physically close to cores (`OMP_PROC_BIND=close`, `OMP_PLACES=cores`) using dynamic scheduling (`OMP_SCHEDULE=dynamic`)[cite: 2].
+*   **Turbo Boost:** Disabled to eliminate automatic clock variations.
+*   **Process Isolation:** Managed CPU allocation via `cgroups` and deprioritized background processes using `renice`.
+*   **OpenMP Tuning:** Bound threads physically close to cores (`OMP_PROC_BIND=close`, `OMP_PLACES=cores`) using dynamic scheduling (`OMP_SCHEDULE=dynamic`).
 
 ## Compilation
-Aggressive optimization and auto-vectorization were enabled using GCC 13.3.0[cite: 2]:
+Aggressive optimization and auto-vectorization were enabled using GCC 13.3.0:
 ```bash
 gcc -O3 -ftree-vectorize -fopenmp lcs.c -o lcs
